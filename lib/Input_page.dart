@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable.dart';
-
-const ActiceCardColor = Color(0xFFEB1555);
-const InActiceCardColor = Color(0xFF1D1E33);
-const ButtomContainerColor = Color(0xFFEB1555);
+import 'Constant.dart';
 
 enum Gender {
   male,
@@ -19,6 +16,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedgender;
+
+  int height = 182;
   // Color malecolor = InActiceCardColor;
   // Color femalecolor = InActiceCardColor;
 
@@ -47,42 +46,39 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: Reusable(
+                    onPress: () {
                       setState(() {
                         selectedgender = Gender.male;
                       });
                     },
-                    child: Reusable(
-                      colour: selectedgender == Gender.male
-                          ? ActiceCardColor
-                          : InActiceCardColor,
-                      cardchild: Icon_content(
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
-                      ),
+                    colour: selectedgender == Gender.male
+                        ? kActiceCardColor
+                        : kInActiceCardColor,
+                    cardchild: Icon_content(
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: Reusable(
+                    onPress: () {
                       setState(() {
                         selectedgender = Gender.female;
                       });
                     },
-                    child: Reusable(
-                      colour: selectedgender == Gender.female
-                          ? ActiceCardColor
-                          : InActiceCardColor,
-                      cardchild: Icon_content(
-                          icon: FontAwesomeIcons.venus, label: 'FEMALE'),
-                    ),
+                    colour: selectedgender == Gender.female
+                        ? kActiceCardColor
+                        : kInActiceCardColor,
+                    cardchild: Icon_content(
+                        icon: FontAwesomeIcons.venus, label: 'FEMALE'),
                   ),
                 ),
               ],
@@ -90,7 +86,43 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: Reusable(
-              colour: InActiceCardColor,
+              colour: kInActiceCardColor,
+              cardchild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: kLabelNumberStyle1,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120.0,
+                    max: 220,
+                    activeColor: kActiceCardColor,
+                    inactiveColor: kInActiceCardColor,
+                    onChanged: (double newvalue) {
+                      setState(() {
+                        height = newvalue.round();
+                      });
+                    },
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -98,12 +130,12 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: Reusable(
-                    colour: InActiceCardColor,
+                    colour: kInActiceCardColor,
                   ),
                 ),
                 Expanded(
                   child: Reusable(
-                    colour: InActiceCardColor,
+                    colour: kInActiceCardColor,
                   ),
                 ),
               ],
