@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/Constant.dart';
 import 'package:bmi_calculator/components/reusable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../components/Buttom_button.dart';
 
@@ -60,6 +61,7 @@ class Resultpage extends StatelessWidget {
           ButtomButton(
             buttonTitle: 'RE-CALCULATE',
             onTap: () {
+              HapticFeedback.vibrate();
               Navigator.pop(context);
             },
           ),

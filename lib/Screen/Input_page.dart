@@ -253,6 +253,7 @@ class _InputPageState extends State<InputPage> {
           ButtomButton(
             buttonTitle: 'CALCULATE',
             onTap: () {
+              HapticFeedback.heavyImpact();
               CalculatorBrain cal =
                   new CalculatorBrain(height: height, weight: weight);
               setState(() {
