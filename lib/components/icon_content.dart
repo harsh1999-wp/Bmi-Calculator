@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Icon_content extends StatelessWidget {
+class IconContent extends StatelessWidget {
   // const Icon_content({
   //   Key key,
   // }) : super(key: key);
 
-  Icon_content({this.icon, this.label});
+  IconContent({this.icon, this.label});
   final IconData icon;
   final String label;
 
